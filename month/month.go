@@ -222,7 +222,7 @@ func (mon Month) PrintMonth(months []Month) {
 				// Add padding for missing week
 
 				// Week number
-				fmt.Print(`   ` + "\t")
+				fmt.Print(`    ` + "\t")
 				for i := 0; i < 7; i++ {
 					fmt.Print(`    `)
 				}
