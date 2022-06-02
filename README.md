@@ -38,3 +38,7 @@ Examples:
   One calendar at a time:
     ./kallu -count 1
 ```
+
+## Is it any good?
+
+Yes.
