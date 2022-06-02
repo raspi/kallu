@@ -2,7 +2,6 @@ package month
 
 import (
 	"fmt"
-	"strings"
 	"time"
 )
 
@@ -106,28 +105,34 @@ func (mon Month) PrintMonth(months []Month) {
 			fmt.Print(SetForeground + "245m")
 
 			// Print month and year header
-			for _, m := range months {
-				o := ""
-
-				// Week
-				o += fmt.Sprint("    \t")
-
-				o += fmt.Sprint("        ")
-
-				// Month name
-				mn := fmt.Sprintf(`%v`, m.GetMonth().Month())
-
+			for mIdx, m := range months {
+				header := fmt.Sprintf(`%v %4v`, m.GetMonth().Month(), m.GetMonth().Year())
 				if mon.now.Year() == m.m.Year() && mon.now.Month() == m.m.Month() {
-					mn = "[" + mn + "]"
+					header = "[" + header + "]"
 				}
 
-				o += mn
+				// Week  Mon Tue Wed Thu Fri Sat Sun
 
-				o += " "
+				required := 34
+				paddedHeader := header
 
-				o += fmt.Sprintf("%4v", m.GetMonth().Year())
+				for i := 0; i < required; i++ {
+					if len(paddedHeader) < required {
+						// Add padding to both sides
+						paddedHeader = " " + paddedHeader + " "
+					}
+				}
 
-				o += fmt.Sprint(strings.Repeat(" ", 16-(len(mn))-1))
+				if len(paddedHeader) > required {
+					// Cut
+					paddedHeader = paddedHeader[0:required]
+				}
+
+				o := paddedHeader
+
+				if mIdx < monthCount-1 {
+					o += " | "
+				}
 
 				fmt.Print(o)
 			}
@@ -146,7 +151,7 @@ func (mon Month) PrintMonth(months []Month) {
 					// Separator
 					fmt.Print(" | ")
 				}
-				fmt.Print("Week\t")
+				fmt.Print("Week  ")
 				for di := 0; di < 7; di++ {
 					fmt.Printf(`%v `, curr.Weekday().String()[0:3])
 					curr = curr.AddDate(0, 0, 1)
@@ -179,7 +184,7 @@ func (mon Month) PrintMonth(months []Month) {
 				fmt.Print(SetForeground + "245m")
 
 				// Week number
-				fmt.Printf(` #%-2v`+"\t", weeknum)
+				fmt.Printf(` #%-2v  `, weeknum)
 
 				fmt.Print(DefaultFG)
 
@@ -222,7 +227,7 @@ func (mon Month) PrintMonth(months []Month) {
 				// Add padding for missing week
 
 				// Week number
-				fmt.Print(`    ` + "\t")
+				fmt.Print(`      `)
 				for i := 0; i < 7; i++ {
 					fmt.Print(`    `)
 				}
