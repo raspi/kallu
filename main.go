@@ -136,7 +136,7 @@ func main() {
 		if *howManyNext > 0 {
 			// Add N next month(s)
 			nextMonth := currentMonth
-			for i := uint(0); i < *howManyPrev; i++ {
+			for i := uint(0); i < *howManyNext; i++ {
 				nextMonth = nextMonth.GetNextMonth()
 				months = append(months, nextMonth)
 			}
