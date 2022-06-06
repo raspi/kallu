@@ -135,8 +135,7 @@ func (mon Month) PrintMonth(months []Month) {
 		fmt.Print(o)
 	}
 
-	fmt.Print(Clear)
-	fmt.Println()
+	fmt.Println(Clear)
 
 	// Day name header
 	fmt.Print(SetBackground + "238m")
@@ -157,8 +156,7 @@ func (mon Month) PrintMonth(months []Month) {
 		}
 	}
 
-	fmt.Print(Clear)
-	fmt.Println()
+	fmt.Println(Clear)
 
 	for weekIndex := 0; weekIndex < maxweeks+1; weekIndex++ {
 
@@ -247,8 +245,6 @@ func (mon Month) PrintMonth(months []Month) {
 			}
 		}
 
-		fmt.Print(Clear)
-
-		fmt.Println()
+		fmt.Println(Clear)
 	}
 }
