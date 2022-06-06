@@ -171,6 +171,8 @@ func (mon Month) PrintMonth(months []Month) {
 		// Print week and days
 		for monthIdx, m := range months {
 
+			_, currweeknum := m.now.ISOWeek()
+
 			start, end := m.GetStartEndWeek()
 			if weekIndex > 0 {
 				// the magick
@@ -183,7 +185,7 @@ func (mon Month) PrintMonth(months []Month) {
 				fmt.Print(SetForeground + "245m")
 
 				// Week number
-				if m.GetMonth().Month() == start.Month() && start.Equal(m.now) {
+				if m.GetMonth().Month() == start.Month() && m.GetMonth().Year() == m.now.Year() && currweeknum == weeknum {
 					// Current week
 					fmt.Print(SetForeground + "255m")
 				}
