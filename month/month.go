@@ -99,71 +99,70 @@ func (mon Month) PrintMonth(months []Month) {
 		}
 	}
 
-	for i := 0; i < maxweeks+1; i++ {
-		if i == 0 {
-			fmt.Print(SetBackground + "238m")
-			fmt.Print(SetForeground + "245m")
+	fmt.Print(SetBackground + "238m")
+	fmt.Print(SetForeground + "245m")
 
-			// Print month and year header
-			for mIdx, m := range months {
-				header := fmt.Sprintf(`%v %4v`, m.GetMonth().Month(), m.GetMonth().Year())
-				if mon.now.Year() == m.m.Year() && mon.now.Month() == m.m.Month() {
-					header = "[" + header + "]"
-				}
-
-				// Week  Mon Tue Wed Thu Fri Sat Sun
-
-				required := 34
-				paddedHeader := header
-
-				for i := 0; i < required; i++ {
-					if len(paddedHeader) < required {
-						// Add padding to both sides
-						paddedHeader = " " + paddedHeader + " "
-					}
-				}
-
-				if len(paddedHeader) > required {
-					// Cut
-					paddedHeader = paddedHeader[0:required]
-				}
-
-				o := paddedHeader
-
-				if mIdx < monthCount-1 {
-					o += " | "
-				}
-
-				fmt.Print(o)
-			}
-
-			fmt.Print(Clear)
-			fmt.Println()
-
-			// Day name header
-			fmt.Print(SetBackground + "238m")
-			fmt.Print(SetForeground + "245m")
-			fmt.Print(SetUnderlineOn)
-
-			for mIdx, m := range months {
-				curr := m.getStart()
-				if mIdx > 0 {
-					// Separator
-					fmt.Print(" | ")
-				}
-				fmt.Print("Week  ")
-				for di := 0; di < 7; di++ {
-					fmt.Printf(`%v `, curr.Weekday().String()[0:3])
-					curr = curr.AddDate(0, 0, 1)
-				}
-			}
-
-			fmt.Print(Clear)
-			fmt.Println()
-
+	// Print month and year header
+	for mIdx, m := range months {
+		header := fmt.Sprintf(`%v %4v`, m.GetMonth().Month(), m.GetMonth().Year())
+		if mon.now.Year() == m.m.Year() && mon.now.Month() == m.m.Month() {
+			header = "[" + header + "]"
 		}
 
-		if (i & 1) == 0 {
+		// Week  Mon Tue Wed Thu Fri Sat Sun
+
+		required := 34
+		paddedHeader := header
+
+		for i := 0; i < required; i++ {
+			if len(paddedHeader) < required {
+				// Add padding to both sides
+				paddedHeader = " " + paddedHeader + " "
+			}
+		}
+
+		if len(paddedHeader) > required {
+			// Cut
+			paddedHeader = paddedHeader[0:required]
+		}
+
+		o := paddedHeader
+
+		if mIdx < monthCount-1 {
+			o += " | "
+		}
+
+		fmt.Print(o)
+	}
+
+	fmt.Print(Clear)
+	fmt.Println()
+
+	// Day name header
+	fmt.Print(SetBackground + "238m")
+	fmt.Print(SetForeground + "245m")
+	fmt.Print(SetUnderlineOn)
+
+	for mIdx, m := range months {
+		curr := m.getStart()
+		if mIdx > 0 {
+			// Separator
+			fmt.Print(" | ")
+		}
+
+		fmt.Print("Week  ")
+		for di := 0; di < 7; di++ {
+			fmt.Printf(`%v `, curr.Weekday().String()[0:3])
+			curr = curr.AddDate(0, 0, 1)
+		}
+	}
+
+	fmt.Print(Clear)
+	fmt.Println()
+
+	for weekIndex := 0; weekIndex < maxweeks+1; weekIndex++ {
+
+		if (weekIndex & 1) == 0 {
 			fmt.Print(SetBackground + "235m")
 		} else {
 			fmt.Print(SetBackground + "236m")
@@ -173,9 +172,9 @@ func (mon Month) PrintMonth(months []Month) {
 		for monthIdx, m := range months {
 
 			start, end := m.GetStartEndWeek()
-			if i > 0 {
+			if weekIndex > 0 {
 				// the magick
-				start = start.AddDate(0, 0, 7*i)
+				start = start.AddDate(0, 0, 7*weekIndex)
 			}
 
 			if start.Before(end) {
