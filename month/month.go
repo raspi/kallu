@@ -6,17 +6,25 @@ import (
 )
 
 type Month struct {
-	m   time.Time
-	dow time.Weekday
-	now time.Time
+	m     time.Time
+	dow   time.Weekday
+	now   time.Time
+	start time.Time // Start week
+	end   time.Time // End week
 }
 
-func New(year int, month time.Month, dow time.Weekday, now time.Time) Month {
-	return Month{
+func New(year int, month time.Month, dow time.Weekday, now time.Time) (m Month) {
+
+	m = Month{
 		dow: dow,
 		m:   time.Date(year, month, 1, 0, 0, 0, 0, time.Local),
 		now: now,
 	}
+
+	m.start = m.getStart()
+	m.end = m.getEnd()
+
+	return m
 }
 
 func (mon Month) GetMonth() (start time.Time) {
@@ -50,10 +58,7 @@ func (mon Month) getEnd() (end time.Time) {
 }
 
 func (mon Month) GetStartEndWeek() (start time.Time, end time.Time) {
-	start = mon.getStart()
-	end = mon.getEnd()
-
-	return start, end
+	return mon.start, mon.end
 }
 
 func (mon Month) GetDaysWeeks(start time.Time, end time.Time) (weeks int, days int) {
