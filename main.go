@@ -3,7 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/raspi/kallu/locales/base"
+	"github.com/raspi/kallu/locales/en"
+	"github.com/raspi/kallu/locales/fi"
 	"github.com/raspi/kallu/month"
+	"golang.org/x/text/language"
 	"os"
 	"strings"
 	"time"
@@ -78,6 +82,35 @@ func main() {
 
 	flag.Parse()
 
+	locale := language.English
+	for _, k := range os.Environ() {
+		arr := strings.SplitAfter(k, `=`)
+		key, value := strings.TrimRight(arr[0], `=`), arr[1]
+
+		if key != `LANG` {
+			continue
+		}
+
+		// fi_FI => fi-FI
+		value = strings.Replace(value, `_`, `-`, -1)
+		value = strings.ToLower(value)
+		if strings.Contains(value, `.`) {
+			// remove .UTF-8
+			value = value[:strings.LastIndex(value, `.`)]
+		}
+
+		candidates, _, err := language.ParseAcceptLanguage(value)
+		if err != nil {
+			panic(err)
+		}
+
+		if len(candidates) > 0 {
+			locale = candidates[0]
+		}
+
+		break
+	}
+
 	if *selectedMonth > 12 || *selectedMonth == 0 {
 		_, _ = fmt.Fprintf(os.Stderr, `invalid month: %d`, *selectedMonth)
 		os.Exit(1)
@@ -89,6 +122,15 @@ func main() {
 	}
 
 	dow := time.Weekday(*selectedDow)
+
+	var monthlocale base.Locale = en.English{}
+
+	switch locale.Parent() {
+	case language.Finnish:
+		monthlocale = fi.Finnish{}
+	default:
+		monthlocale = en.English{}
+	}
 
 	currentMonth := month.New(int(*selectedYear), time.Month(*selectedMonth), dow, now)
 
@@ -152,7 +194,7 @@ func main() {
 		currChunk++
 
 		if currChunk == chunks {
-			currentMonth.PrintMonth(monthList)
+			currentMonth.PrintMonth(monthList, monthlocale)
 			fmt.Println()
 			monthList = []month.Month{}
 			currChunk = 0
@@ -161,7 +203,7 @@ func main() {
 
 	if len(monthList) > 0 {
 		// Print remaining month(s)
-		currentMonth.PrintMonth(monthList)
+		currentMonth.PrintMonth(monthList, monthlocale)
 		fmt.Println()
 	}
 

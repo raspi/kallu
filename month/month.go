@@ -2,7 +2,10 @@ package month
 
 import (
 	"fmt"
+	"github.com/raspi/kallu/locales/base"
+	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 type Month struct {
@@ -82,7 +85,7 @@ func (mon Month) GetNextMonth() Month {
 	return New(last.Year(), last.Month(), mon.dow, mon.now)
 }
 
-func (mon Month) PrintMonth(months []Month) {
+func (mon Month) PrintMonth(months []Month, locale base.Locale) {
 	const (
 		esc             = "\033["
 		Clear           = esc + "0m"
@@ -93,45 +96,40 @@ func (mon Month) PrintMonth(months []Month) {
 		DefaultFG       = SetForeground + "250m"
 	)
 
+	weekLocalized := locale.GetWeek()
+	weekdaysLocalized := locale.GetWeekDays()
+	monthsLocalized := locale.GetMonths()
+
 	monthCount := len(months)
 
-	maxweeks := 0
-	for _, m := range months {
-		start, end := m.GetStartEndWeek()
-		weeks, _ := m.GetDaysWeeks(start, end)
-		if weeks > maxweeks {
-			maxweeks = weeks
-		}
+	var headerCol []string
+	headerSize := 0
+
+	curr := mon.getStart()
+
+	// "Week" localized
+	headerSize += 5
+	headerCol = append(headerCol, weekLocalized)
+
+	// Day names
+	for di := 0; di < 7; di++ {
+		headerSize += 4
+		headerCol = append(headerCol, weekdaysLocalized[curr.Weekday()])
+		curr = curr.AddDate(0, 0, 1)
 	}
+	headerSize += 1
 
 	fmt.Print(SetBackground + "238m")
 	fmt.Print(SetForeground + "245m")
 
 	// Print month and year header
 	for mIdx, m := range months {
-		header := fmt.Sprintf(`%v %4v`, m.GetMonth().Month(), m.GetMonth().Year())
+		header := fmt.Sprintf(`%v %4v`, monthsLocalized[m.GetMonth().Month()], m.GetMonth().Year())
 		if mon.now.Year() == m.m.Year() && mon.now.Month() == m.m.Month() {
 			header = "[" + header + "]"
 		}
 
-		// Week  Mon Tue Wed Thu Fri Sat Sun
-
-		required := 34
-		paddedHeader := header
-
-		for i := 0; i < required; i++ {
-			if len(paddedHeader) < required {
-				// Add padding to both sides
-				paddedHeader = " " + paddedHeader + " "
-			}
-		}
-
-		if len(paddedHeader) > required {
-			// Cut
-			paddedHeader = paddedHeader[0:required]
-		}
-
-		o := paddedHeader
+		o := centerString(header, headerSize)
 
 		if mIdx < monthCount-1 {
 			o += " | "
@@ -147,21 +145,37 @@ func (mon Month) PrintMonth(months []Month) {
 	fmt.Print(SetForeground + "245m")
 	fmt.Print(SetUnderlineOn)
 
-	for mIdx, m := range months {
-		curr := m.getStart()
+	for mIdx, _ := range months {
 		if mIdx > 0 {
 			// Separator
 			fmt.Print(" | ")
 		}
 
-		fmt.Print("Week  ")
-		for di := 0; di < 7; di++ {
-			fmt.Printf(`%v `, curr.Weekday().String()[0:3])
-			curr = curr.AddDate(0, 0, 1)
+		for idx, hdr := range headerCol {
+			switch idx {
+			case 0: // Week
+				fmt.Printf(`%4s `, hdr)
+			default:
+				fmt.Printf(`%4s`, hdr)
+			}
+
+			if idx == 7 {
+				fmt.Print(` `)
+			}
 		}
 	}
 
 	fmt.Println(Clear)
+
+	// Calculate week row count
+	maxweeks := 0
+	for _, m := range months {
+		start, end := m.GetStartEndWeek()
+		weeks, _ := m.GetDaysWeeks(start, end)
+		if weeks > maxweeks {
+			maxweeks = weeks
+		}
+	}
 
 	for weekIndex := 0; weekIndex < maxweeks+1; weekIndex++ {
 
@@ -252,4 +266,9 @@ func (mon Month) PrintMonth(months []Month) {
 
 		fmt.Println(Clear)
 	}
+}
+
+func centerString(str string, width int) string {
+	spaces := int(float64(width-utf8.RuneCountInString(str)) / 2)
+	return strings.Repeat(" ", spaces) + str + strings.Repeat(" ", width-(spaces+utf8.RuneCountInString(str)))
 }
