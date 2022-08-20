@@ -88,6 +88,7 @@ func main() {
 		key, value := strings.TrimRight(arr[0], `=`), arr[1]
 
 		if key != `LANG` {
+			// Wrong key, skip
 			continue
 		}
 
@@ -106,6 +107,7 @@ func main() {
 		}
 
 		if len(candidates) > 0 {
+			// Set language
 			locale = candidates[0]
 		}
 
