@@ -101,7 +101,8 @@ func main() {
 
 		candidates, _, err := language.ParseAcceptLanguage(value)
 		if err != nil {
-			panic(err)
+			_, _ = fmt.Fprintf(os.Stderr, `error: could not parse environmental parameter LANG value %q`+"\n", value)
+			break // Fail and use default language
 		}
 
 		if len(candidates) > 0 {
