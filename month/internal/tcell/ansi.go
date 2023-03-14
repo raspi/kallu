@@ -13,12 +13,6 @@ const (
 
 type Option func(a *ANSI)
 
-type ANSI struct {
-	BGColor   *uint8
-	Underline *bool
-	FGColor   *uint8
-}
-
 func BG(color uint8) Option {
 	return func(a *ANSI) {
 		a.BGColor = &color
@@ -29,6 +23,21 @@ func FG(color uint8) Option {
 	return func(a *ANSI) {
 		a.FGColor = &color
 	}
+}
+
+func Underline(enable bool) Option {
+	return func(a *ANSI) {
+		a.Underline = &enable
+	}
+}
+
+// ANSI contains:
+// - background or foreground color (optional)
+// - Underline (optional)
+type ANSI struct {
+	BGColor   *uint8
+	Underline *bool
+	FGColor   *uint8
 }
 
 func Ansi(opts ...Option) (a *ANSI) {
@@ -63,10 +72,4 @@ func (a ANSI) String() (s string) {
 	}
 
 	return s
-}
-
-func Underline(enable bool) Option {
-	return func(a *ANSI) {
-		a.Underline = &enable
-	}
 }
