@@ -83,8 +83,8 @@ func (mon Month) GetLastMonth() Month {
 }
 
 func (mon Month) GetNextMonth() Month {
-	last := mon.m.AddDate(0, 1, 0)
-	return New(last.Year(), last.Month(), mon.dow, mon.now)
+	next := mon.m.AddDate(0, 1, 0)
+	return New(next.Year(), next.Month(), mon.dow, mon.now)
 }
 
 func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]string, weekLocalized string, monthsLocalized map[time.Month]string, useColor bool) {
