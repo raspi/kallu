@@ -3,6 +3,7 @@ package tcell
 import (
 	"fmt"
 	"unicode"
+	"unicode/utf8"
 )
 
 // Cell is single cell that can be inserted into trow.Row
@@ -48,7 +49,7 @@ func (c *Cell) add(v ...any) error {
 			}
 
 			// Update width
-			c.width += uint(len(s))
+			c.width += uint(utf8.RuneCountInString(s))
 		default:
 			// Not supported
 			return fmt.Errorf(`not supported: v=%[1]T vt=%[2]T`, v, vt)

@@ -5,6 +5,7 @@ import (
 	"github.com/raspi/kallu/month/internal/tcell"
 	"github.com/raspi/kallu/month/internal/trow"
 	"strings"
+	"unicode/utf8"
 )
 
 type ColoredTable struct {
@@ -81,7 +82,7 @@ func (ct *ColoredTable) GetRows() (s [][]string) {
 				}
 			}
 
-			outputs += strings.Repeat(` `, int(ct.columnWidths[cellIndex])-len(txt))
+			outputs += strings.Repeat(` `, int(ct.columnWidths[cellIndex])-utf8.RuneCountInString(txt))
 			n = append(n, outputs)
 		}
 
