@@ -7,6 +7,7 @@ import (
 	"github.com/raspi/kallu/month/internal/trow"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 type Month struct {
@@ -328,7 +329,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 			header = "[" + header + "]"
 		}
 
-		padding := requiredWidth - len(header)
+		padding := requiredWidth - utf8.RuneCountInString(header)
 
 		mnameCell, err := tcell.New(
 			tcell.Ansi(
