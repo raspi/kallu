@@ -6,7 +6,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/raspi/kallu)](https://goreportcard.com/report/github.com/raspi/kallu)
 
 
-Simple CLI calendar. Reimplements `cal`.
+Simple CLI calendar. Reimplements [cal](https://en.wikipedia.org/wiki/Cal_(command)). Supports localization.
 
 ![Screenshot](https://github.com/raspi/kallu/blob/main/_assets/kallu_default.png)
 
