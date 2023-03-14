@@ -1,0 +1,247 @@
+{
+    "language": "en-US",
+    "messages": [
+        {
+            "id": "How many next months",
+            "message": "How many next months",
+            "translation": "How many next months",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "How many previous months",
+            "message": "How many previous months",
+            "translation": "How many previous months",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "How many months per line",
+            "message": "How many months per line",
+            "translation": "How many months per line",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Year (defaults to current year)",
+            "message": "Year (defaults to current year)",
+            "translation": "Year (defaults to current year)",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Month 1-12 (defaults to current month)",
+            "message": "Month 1-12 (defaults to current month)",
+            "translation": "Month 1-12 (defaults to current month)",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Print full year",
+            "message": "Print full year",
+            "translation": "Print full year",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Only one month, equivalent to -next 0 -prev 0",
+            "message": "Only one month, equivalent to -next 0 -prev 0",
+            "translation": "Only one month, equivalent to -next 0 -prev 0",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Disable color output",
+            "message": "Disable color output",
+            "translation": "Disable color output",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Start day for week 0-6 (sun-sat)",
+            "message": "Start day for week 0-6 (sun-sat)",
+            "translation": "Start day for week 0-6 (sun-sat)",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Parameters:",
+            "message": "Parameters:",
+            "translation": "Parameters:",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "default: {DefValue}",
+            "message": "default: {DefValue}",
+            "translation": "default: {DefValue}",
+            "translatorComment": "Copied from source.",
+            "placeholders": [
+                {
+                    "id": "DefValue",
+                    "string": "%[1]q",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "defValue"
+                }
+            ],
+            "fuzzy": true
+        },
+        {
+            "id": "Examples:",
+            "message": "Examples:",
+            "translation": "Examples:",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Full year:",
+            "message": "Full year:",
+            "translation": "Full year:",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "Only this month:",
+            "message": "Only this month:",
+            "translation": "Only this month:",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "One calendar at a time:",
+            "message": "One calendar at a time:",
+            "translation": "One calendar at a time:",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "short.monday",
+            "message": "short.monday",
+            "translation": "ma"
+        },
+        {
+            "id": "short.tuesday",
+            "message": "short.tuesday",
+            "translation": "ti"
+        },
+        {
+            "id": "short.wednesday",
+            "message": "short.wednesday",
+            "translation": "ke"
+        },
+        {
+            "id": "short.thursday",
+            "message": "short.thursday",
+            "translation": "to"
+        },
+        {
+            "id": "short.friday",
+            "message": "short.friday",
+            "translation": "pe"
+        },
+        {
+            "id": "short.saturday",
+            "message": "short.saturday",
+            "translation": "la"
+        },
+        {
+            "id": "short.sunday",
+            "message": "short.sunday",
+            "translation": "su"
+        },
+        {
+            "id": "january",
+            "message": "january",
+            "translation": "january",
+            "comment": "1",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "february",
+            "message": "february",
+            "translation": "february",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "march",
+            "message": "march",
+            "translation": "march",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "april",
+            "message": "april",
+            "translation": "april",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "may",
+            "message": "may",
+            "translation": "may",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "june",
+            "message": "june",
+            "translation": "june",
+            "comment": "6",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "july",
+            "message": "july",
+            "translation": "july",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "august",
+            "message": "august",
+            "translation": "august",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "september",
+            "message": "september",
+            "translation": "september",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "october",
+            "message": "october",
+            "translation": "october",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "november",
+            "message": "november",
+            "translation": "november",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "december",
+            "message": "december",
+            "translation": "december",
+            "comment": "12",
+            "translatorComment": "Copied from source.",
+            "fuzzy": true
+        },
+        {
+            "id": "week",
+            "message": "week",
+            "translation": "vko"
+        }
+    ]
+}

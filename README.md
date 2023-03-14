@@ -39,6 +39,10 @@ Examples:
     ./kallu -count 1
 ```
 
+## Can I add a translation?
+
+Yes. See [locales directory](cmd/kallu/locales).
+
 ## Is it any good?
 
 Yes.

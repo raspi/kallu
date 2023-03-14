@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="help" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="kallu" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="-h" />
+    <kind value="DIRECTORY" />
+    <directory value="$PROJECT_DIR$/cmd/kallu" />
+    <filePath value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

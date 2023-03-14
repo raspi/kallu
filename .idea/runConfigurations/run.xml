@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="kallu" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="-next 3" />
+    <kind value="DIRECTORY" />
+    <directory value="$PROJECT_DIR$/cmd/kallu" />
+    <filePath value="$PROJECT_DIR$" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="update locales" run_configuration_type="MAKEFILE_TARGET_RUN_CONFIGURATION" />
+    </method>
+  </configuration>
+</component>

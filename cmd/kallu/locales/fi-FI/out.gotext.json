@@ -1,0 +1,193 @@
+{
+    "language": "fi-FI",
+    "messages": [
+        {
+            "id": "How many next months",
+            "message": "How many next months",
+            "translation": "Kuinka monta seuraavaa kuukautta"
+        },
+        {
+            "id": "How many previous months",
+            "message": "How many previous months",
+            "translation": "Kuinka monta edellistä kuukautta"
+        },
+        {
+            "id": "How many months per line",
+            "message": "How many months per line",
+            "translation": "Kuinka monta kuukautta per rivi"
+        },
+        {
+            "id": "Year (defaults to current year)",
+            "message": "Year (defaults to current year)",
+            "translation": "Vuosi (vakiona kuluva vuosi)"
+        },
+        {
+            "id": "Month 1-12 (defaults to current month)",
+            "message": "Month 1-12 (defaults to current month)",
+            "translation": "Kuukausi 1-12 (vakiona kuluva kuukausi)"
+        },
+        {
+            "id": "Print full year",
+            "message": "Print full year",
+            "translation": "Tulosta koko vuosi"
+        },
+        {
+            "id": "Only one month, equivalent to -next 0 -prev 0",
+            "message": "Only one month, equivalent to -next 0 -prev 0",
+            "translation": "Vain yksi kuukausi, vastaa parametrejä -next 0 -prev 0"
+        },
+        {
+            "id": "Disable color output",
+            "message": "Disable color output",
+            "translation": "Älä tulosta värejä"
+        },
+        {
+            "id": "Start day for week 0-6 (sun-sat)",
+            "message": "Start day for week 0-6 (sun-sat)",
+            "translation": "Ensimmäinen viikonpäivä 0-6 (su-la)"
+        },
+        {
+            "id": "Parameters:",
+            "message": "Parameters:",
+            "translation": "Parametrit:"
+        },
+        {
+            "id": "default: {DefValue}",
+            "message": "default: {DefValue}",
+            "translation": "vakio: {DefValue}",
+            "placeholders": [
+                {
+                    "id": "DefValue",
+                    "string": "%[1]q",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "defValue"
+                }
+            ]
+        },
+        {
+            "id": "Examples:",
+            "message": "Examples:",
+            "translation": "Esimerkkejä:"
+        },
+        {
+            "id": "Full year:",
+            "message": "Full year:",
+            "translation": "Koko vuosi:"
+        },
+        {
+            "id": "Only this month:",
+            "message": "Only this month:",
+            "translation": "Vain tämä kuukausi:"
+        },
+        {
+            "id": "One calendar at a time:",
+            "message": "One calendar at a time:",
+            "translation": "Yksi kalenteri kerrallaan:"
+        },
+        {
+            "id": "short.monday",
+            "message": "short.monday",
+            "translation": "ma"
+        },
+        {
+            "id": "short.tuesday",
+            "message": "short.tuesday",
+            "translation": "ti"
+        },
+        {
+            "id": "short.wednesday",
+            "message": "short.wednesday",
+            "translation": "ke"
+        },
+        {
+            "id": "short.thursday",
+            "message": "short.thursday",
+            "translation": "to"
+        },
+        {
+            "id": "short.friday",
+            "message": "short.friday",
+            "translation": "pe"
+        },
+        {
+            "id": "short.saturday",
+            "message": "short.saturday",
+            "translation": "la"
+        },
+        {
+            "id": "short.sunday",
+            "message": "short.sunday",
+            "translation": "su"
+        },
+        {
+            "id": "january",
+            "message": "january",
+            "translation": "tammikuu",
+            "comment": "1"
+        },
+        {
+            "id": "february",
+            "message": "february",
+            "translation": "helmikuu"
+        },
+        {
+            "id": "march",
+            "message": "march",
+            "translation": "maaliskuu"
+        },
+        {
+            "id": "april",
+            "message": "april",
+            "translation": "huhtikuu"
+        },
+        {
+            "id": "may",
+            "message": "may",
+            "translation": "toukokuu"
+        },
+        {
+            "id": "june",
+            "message": "june",
+            "translation": "kesäkuu",
+            "comment": "6"
+        },
+        {
+            "id": "july",
+            "message": "july",
+            "translation": "heinäkuu"
+        },
+        {
+            "id": "august",
+            "message": "august",
+            "translation": "elokuu"
+        },
+        {
+            "id": "september",
+            "message": "september",
+            "translation": "syyskuu"
+        },
+        {
+            "id": "october",
+            "message": "october",
+            "translation": "lokakuu"
+        },
+        {
+            "id": "november",
+            "message": "november",
+            "translation": "marraskuu"
+        },
+        {
+            "id": "december",
+            "message": "december",
+            "translation": "joulukuu",
+            "comment": "12"
+        },
+        {
+            "id": "week",
+            "message": "week",
+            "translation": "vko"
+        }
+    ]
+}
