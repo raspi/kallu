@@ -43,6 +43,11 @@ Examples:
 
 Yes. See [locales directory](cmd/kallu/locales).
 
+![Screenshot](https://github.com/raspi/kallu/blob/main/_assets/kallu_fullyear_finnish.png)
+
+Displaying calendar in Finnish.
+
+
 ## Is it any good?
 
 Yes.
