@@ -1,5 +1,7 @@
 #!/bin/env python3
 
+# Merge localization JSON files generated with gotext with possible new strings
+
 from json import load, dump
 from pathlib import Path
 from shutil import move
@@ -11,7 +13,8 @@ if __name__ == "__main__":
     if len(argv) != 3:
         print("too few args", file=stderr)
         print("", file=stderr)
-        print(f"{argv[0]} <> <>", file=stderr)
+        print(f"{argv[0]} <target file> <source file>", file=stderr)
+        print(f"{argv[0]} messages.json out.json", file=stderr)
         exit(1)
 
     messages_file = Path(argv[1])
@@ -40,9 +43,11 @@ if __name__ == "__main__":
                     print(f"  Adding: '{x['id']}'")
                     merged['messages'].append(x)
 
+            # Write to temporary file
             tmpf = NamedTemporaryFile("w", prefix="merged", suffix=".json", encoding="utf-8", delete=False)
             with tmpf as f:
                 dump(merged, f, indent=' ' * 8, ensure_ascii=False)
 
-        newpath = move(tmpf.name, messages_file)
-        print(tmpf.name, "->", newpath)
+            # Move temp file
+            newpath = move(tmpf.name, messages_file)
+            print(tmpf.name, "->", newpath)
