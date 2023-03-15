@@ -137,6 +137,7 @@ compress-everything: copycommon compress-linux compress-freebsd compress-netbsd 
 updatelocales:
 	@echo "Updating locales.."
 	pushd cmd/kallu; go generate; popd
-	find cmd/kallu/locales -mindepth 1 -maxdepth 2 -type d -exec ./json_merge.py "{}/messages.gotext.json" "{}/../en-US/out.gotext.json" \;
+	find cmd/kallu/locales -mindepth 1 -maxdepth 2 -type d -exec ./json_merge.py "{}/messages.gotext.json" "{}/out.gotext.json" \;
+	@echo "now translate messages.gotext.json and run this again"
 
 .PHONY: all clean test default
