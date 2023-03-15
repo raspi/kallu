@@ -163,12 +163,12 @@ func main() {
 	}
 
 	if *selectedMonth > 12 || *selectedMonth == 0 {
-		_, _ = fmt.Fprintf(os.Stderr, `invalid month: %d`, *selectedMonth)
+		_, _ = fmt.Fprintf(os.Stderr, tr.Sprintf(`invalid month: %d`, *selectedMonth))
 		os.Exit(1)
 	}
 
 	if *selectedDow > 6 {
-		_, _ = fmt.Fprintf(os.Stderr, `invalid starting day of week: %d`, *selectedDow)
+		_, _ = fmt.Fprintf(os.Stderr, tr.Sprintf(`invalid starting day of week: %d`, *selectedDow))
 		os.Exit(1)
 	}
 
@@ -177,7 +177,7 @@ func main() {
 	currentMonth := month.New(int(*selectedYear), time.Month(*selectedMonth), dow, now)
 
 	if *howManyChunks == 0 {
-		_, _ = fmt.Fprintf(os.Stderr, `count must be > 0`)
+		_, _ = fmt.Fprintf(os.Stderr, tr.Sprintf(`count must be > 0`))
 		os.Exit(1)
 	}
 
