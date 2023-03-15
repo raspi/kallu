@@ -107,7 +107,6 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 	mtable := table.New(useColor, nil)
 
 	for i := 0; i < monthCount; i++ {
-
 		weekName, err := tcell.New(
 			tcell.Ansi(
 				tcell.Underline(true),
@@ -165,6 +164,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 		}
 	}
 
+	// generate main week view
 	for weekIndex := 0; weekIndex < maxweeks+1; weekIndex++ {
 		wdRow := trow.New()
 
@@ -238,7 +238,6 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 					}
 
 					if start.Month() != m.GetMonth().Month() && !prevornext {
-
 						err = dayN.Add(tcell.Ansi(tcell.FG(240)))
 						if err != nil {
 							panic(err)
@@ -316,6 +315,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 		requiredWidth += int(w)
 	}
 
+	// generate top month row
 	monthRow := trow.New()
 	for i, m := range months {
 

@@ -61,11 +61,10 @@ func (ct *ColoredTable) GetColumnCount() int {
 }
 
 func (ct *ColoredTable) GetRows() (s [][]string) {
-	for _, r := range ct.rows {
+	for _, row := range ct.rows {
 		var n []string
 
-		for cellIndex, cell := range r.GetCells() {
-
+		for cellIndex, cell := range row.GetCells() {
 			txt := ``     // Text representation
 			outputs := `` // Whole representation with color(s)
 
