@@ -353,7 +353,8 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 			err = mnameCell.Add(
 				tcell.Ansi(
 					tcell.Underline(true),
-					tcell.FG(DefaultFG)),
+					tcell.FG(DefaultFG),
+				),
 			)
 			if err != nil {
 				panic(err)
