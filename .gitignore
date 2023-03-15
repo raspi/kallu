@@ -17,3 +17,6 @@
 /cmd/kallu/kallu
 release/v*.*.*
 bin/
+
+# Locales
+/cmd/kallu/locales/*-*/out.gotext.json
