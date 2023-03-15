@@ -15,3 +15,5 @@
 # vendor/
 /kallu
 /cmd/kallu/kallu
+release/v*.*.*
+bin/
