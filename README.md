@@ -16,25 +16,25 @@ Simple CLI calendar. Reimplements [cal](https://en.wikipedia.org/wiki/Cal_(comma
 
 ```text
 kallu - simple CLI calendar
-Version v0.0.0 dev 0000-00-00T00:00:00+00:00
+Version v1.0.1 d263afdbf05c795c4d1a95b5093888b7b700dc61 2023-03-15T18:22:18+02:00
 (c) Pekka Järvinen 2022- [ https://github.com/raspi/kallu ]
 
 Parameters:
   -count      How many months per line   default: "3"
   -dow        Start day for week 0-6 (sun-sat)   default: "1"
   -fullyear   Print full year   default: "false"
-  -month      Month 1-12 (defaults to current month)   default: "6"
+  -month      Month 1-12 (defaults to current month)   
   -next       How many next months   default: "1"
+  -no-color   Disable color output   default: "false"
   -one        Only one month, equivalent to -next 0 -prev 0   default: "false"
   -prev       How many previous months   default: "1"
-  -year       Year (defaults to current year)   default: "2022"
+  -year       Year (defaults to current year)   
 
 Examples:
   Full year:
     ./kallu -fullyear
   Only this month:
     ./kallu -one
-    - equivalent to ./kallu -next 0 -prev 0
   One calendar at a time:
     ./kallu -count 1
 ```
