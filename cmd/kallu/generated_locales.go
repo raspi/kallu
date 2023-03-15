@@ -27,10 +27,10 @@ func (d *dictionary) Lookup(key string) (data string, ok bool) {
 
 func init() {
 	dict := map[string]catalog.Dictionary{
-		"en_US": &dictionary{index: en_USIndex, data: en_USData},
+		"en":    &dictionary{index: enIndex, data: enData},
 		"fi_FI": &dictionary{index: fi_FIIndex, data: fi_FIData},
 	}
-	fallback := language.MustParse("en-US")
+	fallback := language.MustParse("en")
 	cat, err := catalog.NewFromMap(dict, catalog.Fallback(fallback))
 	if err != nil {
 		panic(err)
@@ -79,32 +79,32 @@ var messageKeyToIndex = map[string]int{
 	"week":                                          37,
 }
 
-var en_USIndex = []uint32{ // 39 elements
+var enIndex = []uint32{ // 39 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000015, 0x0000002e, 0x00000047,
 	0x00000067, 0x0000008e, 0x0000009e, 0x000000cc,
 	0x000000e1, 0x00000102, 0x0000010e, 0x0000011d,
 	0x00000127, 0x00000132, 0x00000143, 0x0000015b,
-	0x00000170, 0x00000194, 0x000001a6, 0x000001a9,
-	0x000001ac, 0x000001af, 0x000001b2, 0x000001b5,
-	0x000001b8, 0x000001bb, 0x000001c3, 0x000001cc,
-	0x000001d2, 0x000001d8, 0x000001dc, 0x000001e1,
+	0x00000170, 0x00000194, 0x000001a6, 0x000001aa,
+	0x000001ae, 0x000001b2, 0x000001b6, 0x000001ba,
+	0x000001be, 0x000001c2, 0x000001ca, 0x000001d3,
+	0x000001d9, 0x000001df, 0x000001e3, 0x000001e8,
 	// Entry 20 - 3F
-	0x000001e6, 0x000001ed, 0x000001f7, 0x000001ff,
-	0x00000208, 0x00000211, 0x00000215,
+	0x000001ed, 0x000001f4, 0x000001fe, 0x00000206,
+	0x0000020f, 0x00000218, 0x0000021d,
 } // Size: 180 bytes
 
-const en_USData string = "" + // Size: 533 bytes
+const enData string = "" + // Size: 541 bytes
 	"\x02How many next months\x02How many previous months\x02How many months " +
 	"per line\x02Year (defaults to current year)\x02Month 1-12 (defaults to c" +
 	"urrent month)\x02Print full year\x02Only one month, equivalent to -next " +
 	"0 -prev 0\x02Disable color output\x02Start day for week 0-6 (sun-sat)" +
 	"\x02Parameters:\x02default: %[1]q\x02Examples:\x02Full year:\x02Only thi" +
 	"s month:\x02One calendar at a time:\x02invalid month: %[1]d\x02invalid s" +
-	"tarting day of week: %[1]d\x02count must be > 0\x02ma\x02ti\x02ke\x02to" +
-	"\x02pe\x02la\x02su\x02january\x02february\x02march\x02april\x02may\x02ju" +
-	"ne\x02july\x02august\x02september\x02october\x02november\x02december\x02" +
-	"vko"
+	"tarting day of week: %[1]d\x02count must be > 0\x02mon\x02tue\x02wed\x02" +
+	"thu\x02fri\x02sat\x02sun\x02january\x02february\x02march\x02april\x02may" +
+	"\x02june\x02july\x02august\x02september\x02october\x02november\x02decemb" +
+	"er\x02week"
 
 var fi_FIIndex = []uint32{ // 39 elements
 	// Entry 0 - 1F
@@ -133,4 +133,4 @@ const fi_FIData string = "" + // Size: 622 bytes
 	"kuu\x02helmikuu\x02maaliskuu\x02huhtikuu\x02toukokuu\x02kesäkuu\x02heinä" +
 	"kuu\x02elokuu\x02syyskuu\x02lokakuu\x02marraskuu\x02joulukuu\x02vko"
 
-	// Total table size 1515 bytes (1KiB); checksum: AF601EC
+	// Total table size 1523 bytes (1KiB); checksum: 98EB07F9

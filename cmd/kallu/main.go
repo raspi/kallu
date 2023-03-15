@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-//go:generate gotext -srclang=en-US update -out generated_locales.go -lang=en-US,fi-FI
+//go:generate gotext -srclang=en update -out generated_locales.go -lang=en,fi-FI
 
 // These are set with Makefile -X=main.VERSION, etc
 var (
