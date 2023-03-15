@@ -105,7 +105,7 @@ func main() {
 	selectedDow := flag.Uint(`dow`, uint(time.Monday), tr.Sprintf(`Start day for week 0-6 (sun-sat)`))
 
 	flag.Usage = func() {
-		f := os.Args[0]
+		f := os.Args[0] // exe name
 		_, _ = fmt.Fprintf(os.Stdout, `kallu - simple CLI calendar`+"\n")
 		_, _ = fmt.Fprintf(os.Stdout, `Version %v %v %v`+"\n", VERSION, BUILD, BUILDDATE)
 		_, _ = fmt.Fprintf(os.Stdout, `(c) %v %v- [ %v ]`+"\n", AUTHOR, YEAR, HOMEPAGE)
@@ -228,13 +228,13 @@ func main() {
 	}
 
 	weekdaysLocalized := map[time.Weekday]string{
-		time.Monday:    tr.Sprintf(`short.monday`),
+		time.Monday:    tr.Sprintf(`short.monday`), // mon
 		time.Tuesday:   tr.Sprintf(`short.tuesday`),
 		time.Wednesday: tr.Sprintf(`short.wednesday`),
 		time.Thursday:  tr.Sprintf(`short.thursday`),
 		time.Friday:    tr.Sprintf(`short.friday`),
 		time.Saturday:  tr.Sprintf(`short.saturday`),
-		time.Sunday:    tr.Sprintf(`short.sunday`),
+		time.Sunday:    tr.Sprintf(`short.sunday`), // sun
 	}
 
 	monthsLocalized := map[time.Month]string{
