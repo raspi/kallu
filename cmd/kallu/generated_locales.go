@@ -53,76 +53,84 @@ var messageKeyToIndex = map[string]int{
 	"Print full year":                               5,
 	"Start day for week 0-6 (sun-sat)":              8,
 	"Year (defaults to current year)":               3,
-	"april":                                         25,
-	"august":                                        29,
-	"december":                                      33,
+	"april":                                         28,
+	"august":                                        32,
+	"count must be > 0":                             17,
+	"december":                                      36,
 	"default: %q":                                   10,
-	"february":                                      23,
-	"january":                                       22,
-	"july":                                          28,
-	"june":                                          27,
-	"march":                                         24,
-	"may":                                           26,
-	"november":                                      32,
-	"october":                                       31,
-	"september":                                     30,
-	"short.friday":                                  19,
-	"short.monday":                                  15,
-	"short.saturday":                                20,
-	"short.sunday":                                  21,
-	"short.thursday":                                18,
-	"short.tuesday":                                 16,
-	"short.wednesday":                               17,
-	"week":                                          34,
+	"february":                                      26,
+	"invalid month: %d":                             15,
+	"invalid starting day of week: %d":              16,
+	"january":                                       25,
+	"july":                                          31,
+	"june":                                          30,
+	"march":                                         27,
+	"may":                                           29,
+	"november":                                      35,
+	"october":                                       34,
+	"september":                                     33,
+	"short.friday":                                  22,
+	"short.monday":                                  18,
+	"short.saturday":                                23,
+	"short.sunday":                                  24,
+	"short.thursday":                                21,
+	"short.tuesday":                                 19,
+	"short.wednesday":                               20,
+	"week":                                          37,
 }
 
-var en_USIndex = []uint32{ // 36 elements
+var en_USIndex = []uint32{ // 39 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000015, 0x0000002e, 0x00000047,
 	0x00000067, 0x0000008e, 0x0000009e, 0x000000cc,
 	0x000000e1, 0x00000102, 0x0000010e, 0x0000011d,
 	0x00000127, 0x00000132, 0x00000143, 0x0000015b,
-	0x0000015e, 0x00000161, 0x00000164, 0x00000167,
-	0x0000016a, 0x0000016d, 0x00000170, 0x00000178,
-	0x00000181, 0x00000187, 0x0000018d, 0x00000191,
-	0x00000196, 0x0000019b, 0x000001a2, 0x000001ac,
+	0x00000170, 0x00000194, 0x000001a6, 0x000001a9,
+	0x000001ac, 0x000001af, 0x000001b2, 0x000001b5,
+	0x000001b8, 0x000001bb, 0x000001c3, 0x000001cc,
+	0x000001d2, 0x000001d8, 0x000001dc, 0x000001e1,
 	// Entry 20 - 3F
-	0x000001b4, 0x000001bd, 0x000001c6, 0x000001ca,
-} // Size: 168 bytes
+	0x000001e6, 0x000001ed, 0x000001f7, 0x000001ff,
+	0x00000208, 0x00000211, 0x00000215,
+} // Size: 180 bytes
 
-const en_USData string = "" + // Size: 458 bytes
+const en_USData string = "" + // Size: 533 bytes
 	"\x02How many next months\x02How many previous months\x02How many months " +
 	"per line\x02Year (defaults to current year)\x02Month 1-12 (defaults to c" +
 	"urrent month)\x02Print full year\x02Only one month, equivalent to -next " +
 	"0 -prev 0\x02Disable color output\x02Start day for week 0-6 (sun-sat)" +
 	"\x02Parameters:\x02default: %[1]q\x02Examples:\x02Full year:\x02Only thi" +
-	"s month:\x02One calendar at a time:\x02ma\x02ti\x02ke\x02to\x02pe\x02la" +
-	"\x02su\x02january\x02february\x02march\x02april\x02may\x02june\x02july" +
-	"\x02august\x02september\x02october\x02november\x02december\x02vko"
+	"s month:\x02One calendar at a time:\x02invalid month: %[1]d\x02invalid s" +
+	"tarting day of week: %[1]d\x02count must be > 0\x02ma\x02ti\x02ke\x02to" +
+	"\x02pe\x02la\x02su\x02january\x02february\x02march\x02april\x02may\x02ju" +
+	"ne\x02july\x02august\x02september\x02october\x02november\x02december\x02" +
+	"vko"
 
-var fi_FIIndex = []uint32{ // 36 elements
+var fi_FIIndex = []uint32{ // 39 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000021, 0x00000043, 0x00000063,
 	0x00000080, 0x000000a8, 0x000000bb, 0x000000f3,
 	0x0000010a, 0x00000131, 0x0000013d, 0x0000014a,
 	0x00000158, 0x00000164, 0x0000017a, 0x00000195,
-	0x00000198, 0x0000019b, 0x0000019e, 0x000001a1,
-	0x000001a4, 0x000001a7, 0x000001aa, 0x000001b3,
-	0x000001bc, 0x000001c6, 0x000001cf, 0x000001d8,
-	0x000001e1, 0x000001eb, 0x000001f2, 0x000001fa,
+	0x000001ae, 0x000001d1, 0x000001ea, 0x000001ed,
+	0x000001f0, 0x000001f3, 0x000001f6, 0x000001f9,
+	0x000001fc, 0x000001ff, 0x00000208, 0x00000211,
+	0x0000021b, 0x00000224, 0x0000022d, 0x00000236,
 	// Entry 20 - 3F
-	0x00000202, 0x0000020c, 0x00000215, 0x00000219,
-} // Size: 168 bytes
+	0x00000240, 0x00000247, 0x0000024f, 0x00000257,
+	0x00000261, 0x0000026a, 0x0000026e,
+} // Size: 180 bytes
 
-const fi_FIData string = "" + // Size: 537 bytes
+const fi_FIData string = "" + // Size: 622 bytes
 	"\x02Kuinka monta seuraavaa kuukautta\x02Kuinka monta edellistä kuukautta" +
 	"\x02Kuinka monta kuukautta per rivi\x02Vuosi (vakiona kuluva vuosi)\x02K" +
 	"uukausi 1-12 (vakiona kuluva kuukausi)\x02Tulosta koko vuosi\x02Vain yks" +
 	"i kuukausi, vastaa parametrejä -next 0 -prev 0\x02Älä tulosta värejä\x02" +
 	"Ensimmäinen viikonpäivä 0-6 (su-la)\x02Parametrit:\x02vakio: %[1]q\x02Es" +
 	"imerkkejä:\x02Koko vuosi:\x02Vain tämä kuukausi:\x02Yksi kalenteri kerra" +
-	"llaan:\x02ma\x02ti\x02ke\x02to\x02pe\x02la\x02su\x02tammikuu\x02helmikuu" +
-	"\x02maaliskuu\x02huhtikuu\x02toukokuu\x02kesäkuu\x02heinäkuu\x02elokuu" +
-	"\x02syyskuu\x02lokakuu\x02marraskuu\x02joulukuu\x02vko"
+	"llaan:\x02väärä kuukausi: %[1]d\x02tunnistamaton viikonpäivä: %[1]d\x02m" +
+	"äärän tulee olla > 0\x02ma\x02ti\x02ke\x02to\x02pe\x02la\x02su\x02tammi" +
+	"kuu\x02helmikuu\x02maaliskuu\x02huhtikuu\x02toukokuu\x02kesäkuu\x02heinä" +
+	"kuu\x02elokuu\x02syyskuu\x02lokakuu\x02marraskuu\x02joulukuu\x02vko"
 
-	// Total table size 1331 bytes (1KiB); checksum: 6C32E6F1
+	// Total table size 1515 bytes (1KiB); checksum: AF601EC

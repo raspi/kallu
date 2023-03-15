@@ -188,6 +188,41 @@
                         "id": "One calendar at a time:",
                         "message": "One calendar at a time:",
                         "translation": "Yksi kalenteri kerrallaan:"
+                },
+                {
+                        "id": "invalid month: {SelectedMonth}",
+                        "message": "invalid month: {SelectedMonth}",
+                        "translation": "väärä kuukausi: {SelectedMonth}",
+                        "placeholders": [
+                                {
+                                        "id": "SelectedMonth",
+                                        "string": "%[1]d",
+                                        "type": "uint",
+                                        "underlyingType": "uint",
+                                        "argNum": 1,
+                                        "expr": "*selectedMonth"
+                                }
+                        ]
+                },
+                {
+                        "id": "invalid starting day of week: {SelectedDow}",
+                        "message": "invalid starting day of week: {SelectedDow}",
+                        "translation": "tunnistamaton viikonpäivä: {SelectedDow}",
+                        "placeholders": [
+                                {
+                                        "id": "SelectedDow",
+                                        "string": "%[1]d",
+                                        "type": "uint",
+                                        "underlyingType": "uint",
+                                        "argNum": 1,
+                                        "expr": "*selectedDow"
+                                }
+                        ]
+                },
+                {
+                        "id": "count must be > 0",
+                        "message": "count must be > 0",
+                        "translation": "määrän tulee olla > 0"
                 }
         ]
 }

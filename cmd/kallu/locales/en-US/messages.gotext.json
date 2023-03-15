@@ -200,6 +200,47 @@
                         "translation": "One calendar at a time:",
                         "translatorComment": "Copied from source.",
                         "fuzzy": true
+                },
+                {
+                        "id": "invalid month: {SelectedMonth}",
+                        "message": "invalid month: {SelectedMonth}",
+                        "translation": "invalid month: {SelectedMonth}",
+                        "translatorComment": "Copied from source.",
+                        "placeholders": [
+                                {
+                                        "id": "SelectedMonth",
+                                        "string": "%[1]d",
+                                        "type": "uint",
+                                        "underlyingType": "uint",
+                                        "argNum": 1,
+                                        "expr": "*selectedMonth"
+                                }
+                        ],
+                        "fuzzy": true
+                },
+                {
+                        "id": "invalid starting day of week: {SelectedDow}",
+                        "message": "invalid starting day of week: {SelectedDow}",
+                        "translation": "invalid starting day of week: {SelectedDow}",
+                        "translatorComment": "Copied from source.",
+                        "placeholders": [
+                                {
+                                        "id": "SelectedDow",
+                                        "string": "%[1]d",
+                                        "type": "uint",
+                                        "underlyingType": "uint",
+                                        "argNum": 1,
+                                        "expr": "*selectedDow"
+                                }
+                        ],
+                        "fuzzy": true
+                },
+                {
+                        "id": "count must be > 0",
+                        "message": "count must be > 0",
+                        "translation": "count must be > 0",
+                        "translatorComment": "Copied from source.",
+                        "fuzzy": true
                 }
         ]
 }
