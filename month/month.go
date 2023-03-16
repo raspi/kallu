@@ -93,11 +93,8 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 	monthCount := len(months)
 
 	separator := tcell.New(tcell.Ansi(tcell.FG(245)), `|`)
-
 	emptyC := tcell.New(` `)
-
 	hdrRow := trow.New()
-
 	mtable := table.New(useColor, nil)
 
 	// Week
@@ -177,9 +174,10 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 			if start.Before(end) {
 				_, weeknum := start.ISOWeek()
 
-				// Week number
+				// Week number cell
 				weekC := tcell.New(tcell.Ansi(tcell.FG(245)))
 
+				// Alternate background colors
 				if (weekIndex & 1) == 0 {
 					weekC.Add(tcell.Ansi(tcell.BG(235)))
 				} else {
@@ -192,15 +190,15 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 
 				// Week number
 				weekC.Add(fmt.Sprintf(`%*s`, weekWidth-2, fmt.Sprintf(`#%-2d`, weeknum)))
-				wdRow.Add(weekC)
-
 				weekC.Add(tcell.Ansi(tcell.FG(DefaultFG)))
+
+				// Add week to row
+				wdRow.Add(weekC)
 
 				// Previous or next month day
 				prevornext := false
 
 				for i := 0; i < 7; i++ {
-
 					// Day number
 					dayN := tcell.New()
 
@@ -278,12 +276,12 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 	// generate top month row
 	monthRow := trow.New()
 	for i, m := range months {
-
 		isCurrentMonth := false
 		header := fmt.Sprintf(
 			`%v %4v`,
 			monthsLocalized[m.GetMonth().Month()], m.GetMonth().Year(),
 		)
+
 		if mon.now.Year() == m.m.Year() && mon.now.Month() == m.m.Month() {
 			isCurrentMonth = true
 			header = "[" + header + "]"
@@ -301,6 +299,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 		spaces := padding / 2
 		padding -= spaces
 
+		// Add padding
 		mnameCell.Add(strings.Repeat(` `, spaces))
 
 		if isCurrentMonth {
@@ -319,12 +318,15 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 			mnameCell.Add(
 				tcell.Ansi(
 					tcell.Underline(false),
-					tcell.FG(245)),
+					tcell.FG(245),
+				),
 			)
 		}
 
+		// Add padding
 		mnameCell.Add(strings.Repeat(` `, padding))
 
+		// Month name
 		monthRow.Add(mnameCell)
 
 		// Add separator
@@ -334,6 +336,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 
 	}
 
+	// Month name table
 	mnametable := table.New(useColor, &monthRow)
 
 	// Print month names
