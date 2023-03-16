@@ -92,56 +92,52 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 
 	monthCount := len(months)
 
-	separator, err := tcell.New(tcell.Ansi(tcell.FG(245)), `|`)
-	if err != nil {
-		panic(err)
-	}
+	separator := tcell.New(tcell.Ansi(tcell.FG(245)), `|`)
 
-	emptyC, err := tcell.New(` `)
-	if err != nil {
-		panic(err)
-	}
+	emptyC := tcell.New(` `)
 
 	hdrRow := trow.New()
 
 	mtable := table.New(useColor, nil)
 
+	// Week
+	weekRowCells := []*tcell.Cell{
+		tcell.New(fmt.Sprintf(`%3s `, weekLocalized)),
+	}
+
+	// Day names
+	curr := mon.getStart()
+	for di := 0; di < 7; di++ {
+		weekRowCells = append(weekRowCells)
+		wdn := tcell.New(fmt.Sprintf(`%3s`, weekdaysLocalized[curr.Weekday()]))
+
+		if di < 6 {
+			// Add padding
+			wdn.Add(` `)
+		}
+
+		weekRowCells = append(weekRowCells, wdn)
+
+		curr = curr.AddDate(0, 0, 1)
+	}
+
+	// generate week & day header for each month
 	for i := 0; i < monthCount; i++ {
-		weekName, err := tcell.New(
-			tcell.Ansi(
-				tcell.Underline(true),
-				tcell.BG(238),
-				tcell.FG(245),
-			),
-			weekLocalized+`  `,
-		)
-		if err != nil {
-			panic(err)
+		wrc := weekRowCells
+
+		if i == 0 {
+			// Set only on first month
+			wrc[0] = tcell.New(
+				tcell.Ansi(
+					tcell.Underline(true),
+					tcell.BG(238),
+					tcell.FG(245),
+				),
+				wrc[0].GetValue()[0],
+			)
 		}
 
-		hdrRow.Add(weekName)
-
-		curr := mon.getStart()
-
-		// Day names
-		for di := 0; di < 7; di++ {
-			wdn, err := tcell.New(fmt.Sprintf(`%3s`, weekdaysLocalized[curr.Weekday()]))
-			if err != nil {
-				panic(err)
-			}
-
-			if di < 6 {
-				// Add padding
-				err = wdn.Add(` `)
-				if err != nil {
-					panic(err)
-				}
-			}
-
-			hdrRow.Add(wdn)
-
-			curr = curr.AddDate(0, 0, 1)
-		}
+		hdrRow.Add(wrc...)
 
 		if i < monthCount-1 {
 			// Add separator
@@ -182,41 +178,23 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 				_, weeknum := start.ISOWeek()
 
 				// Week number
-				weekC, err := tcell.New(tcell.Ansi(tcell.FG(245)))
-				if err != nil {
-					panic(err)
-				}
+				weekC := tcell.New(tcell.Ansi(tcell.FG(245)))
 
 				if (weekIndex & 1) == 0 {
-					err = weekC.Add(tcell.Ansi(tcell.BG(235)))
-					if err != nil {
-						panic(err)
-					}
+					weekC.Add(tcell.Ansi(tcell.BG(235)))
 				} else {
-					err = weekC.Add(tcell.Ansi(tcell.BG(236)))
-					if err != nil {
-						panic(err)
-					}
+					weekC.Add(tcell.Ansi(tcell.BG(236)))
 				}
 
 				if m.GetMonth().Month() == start.Month() && m.GetMonth().Year() == m.now.Year() && currweeknum == weeknum {
-					err = weekC.Add(tcell.Ansi(tcell.FG(255)))
-					if err != nil {
-						panic(err)
-					}
+					weekC.Add(tcell.Ansi(tcell.FG(255)))
 				}
 
 				// Week number
-				err = weekC.Add(fmt.Sprintf(`%*s`, weekWidth-2, fmt.Sprintf(`#%-2d`, weeknum)))
-				if err != nil {
-					panic(err)
-				}
+				weekC.Add(fmt.Sprintf(`%*s`, weekWidth-2, fmt.Sprintf(`#%-2d`, weeknum)))
 				wdRow.Add(weekC)
 
-				err = weekC.Add(tcell.Ansi(tcell.FG(DefaultFG)))
-				if err != nil {
-					panic(err)
-				}
+				weekC.Add(tcell.Ansi(tcell.FG(DefaultFG)))
 
 				// Previous or next month day
 				prevornext := false
@@ -224,10 +202,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 				for i := 0; i < 7; i++ {
 
 					// Day number
-					dayN, err := tcell.New()
-					if err != nil {
-						panic(err)
-					}
+					dayN := tcell.New()
 
 					currentDay := false
 
@@ -238,10 +213,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 					}
 
 					if start.Month() != m.GetMonth().Month() && !prevornext {
-						err = dayN.Add(tcell.Ansi(tcell.FG(240)))
-						if err != nil {
-							panic(err)
-						}
+						dayN.Add(tcell.Ansi(tcell.FG(240)))
 
 						// Previous or next month
 						prevornext = true
@@ -249,10 +221,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 
 					if start.Day() == 1 && m.m.Month() == start.Month() {
 						// Start of month
-						err = dayN.Add(tcell.Ansi(tcell.FG(DefaultFG)))
-						if err != nil {
-							panic(err)
-						}
+						dayN.Add(tcell.Ansi(tcell.FG(DefaultFG)))
 
 						prevornext = false
 					}
@@ -261,23 +230,14 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 					if currentDay {
 						dateFmt = `[%d]`
 
-						err = dayN.Add(tcell.Ansi(tcell.FG(255), tcell.Underline(true)))
-						if err != nil {
-							panic(err)
-						}
+						dayN.Add(tcell.Ansi(tcell.FG(255), tcell.Underline(true)))
 
 					}
 
-					err = dayN.Add(fmt.Sprintf(dateFmt, start.Day()))
-					if err != nil {
-						panic(err)
-					}
+					dayN.Add(fmt.Sprintf(dateFmt, start.Day()))
 
 					if currentDay {
-						err = dayN.Add(tcell.Ansi(tcell.Underline(false), tcell.FG(DefaultFG)))
-						if err != nil {
-							panic(err)
-						}
+						dayN.Add(tcell.Ansi(tcell.Underline(false), tcell.FG(DefaultFG)))
 
 						currentDay = false
 					}
@@ -331,58 +291,39 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 
 		padding := requiredWidth - utf8.RuneCountInString(header)
 
-		mnameCell, err := tcell.New(
+		mnameCell := tcell.New(
 			tcell.Ansi(
 				tcell.BG(238),
 				tcell.FG(245),
 			),
 		)
-		if err != nil {
-			panic(err)
-		}
 
 		spaces := padding / 2
 		padding -= spaces
 
-		err = mnameCell.Add(strings.Repeat(` `, spaces))
-		if err != nil {
-			panic(err)
-		}
+		mnameCell.Add(strings.Repeat(` `, spaces))
 
 		if isCurrentMonth {
-			err = mnameCell.Add(
+			mnameCell.Add(
 				tcell.Ansi(
 					tcell.Underline(true),
 					tcell.FG(DefaultFG),
 				),
 			)
-			if err != nil {
-				panic(err)
-			}
-
 		}
 
 		// Add header
-		err = mnameCell.Add(header)
-		if err != nil {
-			panic(err)
-		}
+		mnameCell.Add(header)
 
 		if isCurrentMonth {
-			err = mnameCell.Add(
+			mnameCell.Add(
 				tcell.Ansi(
 					tcell.Underline(false),
 					tcell.FG(245)),
 			)
-			if err != nil {
-				panic(err)
-			}
 		}
 
-		err = mnameCell.Add(strings.Repeat(` `, padding))
-		if err != nil {
-			panic(err)
-		}
+		mnameCell.Add(strings.Repeat(` `, padding))
 
 		monthRow.Add(mnameCell)
 
