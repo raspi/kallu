@@ -44,7 +44,7 @@ func getEnv() (useColor bool, locale language.Tag) {
 		switch key {
 		case `LANG`:
 			if value == `C` {
-				break
+				continue
 			}
 
 			// fi_FI => fi-FI
