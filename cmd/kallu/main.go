@@ -227,33 +227,6 @@ func main() {
 		}
 	}
 
-	weekdaysLocalized := map[time.Weekday]string{
-		time.Monday:    tr.Sprintf(`short.monday`), // mon
-		time.Tuesday:   tr.Sprintf(`short.tuesday`),
-		time.Wednesday: tr.Sprintf(`short.wednesday`),
-		time.Thursday:  tr.Sprintf(`short.thursday`),
-		time.Friday:    tr.Sprintf(`short.friday`),
-		time.Saturday:  tr.Sprintf(`short.saturday`),
-		time.Sunday:    tr.Sprintf(`short.sunday`), // sun
-	}
-
-	monthsLocalized := map[time.Month]string{
-		time.January:   tr.Sprintf(`january`), // 1
-		time.February:  tr.Sprintf(`february`),
-		time.March:     tr.Sprintf(`march`),
-		time.April:     tr.Sprintf(`april`),
-		time.May:       tr.Sprintf(`may`),
-		time.June:      tr.Sprintf(`june`), // 6
-		time.July:      tr.Sprintf(`july`),
-		time.August:    tr.Sprintf(`august`),
-		time.September: tr.Sprintf(`september`),
-		time.October:   tr.Sprintf(`october`),
-		time.November:  tr.Sprintf(`november`),
-		time.December:  tr.Sprintf(`december`), // 12
-	}
-
-	weekLocalized := tr.Sprintf(`week`)
-
 	chunks := *howManyChunks
 	currChunk := uint(0)
 
@@ -263,7 +236,7 @@ func main() {
 		currChunk++
 
 		if currChunk == chunks {
-			currentMonth.PrintMonth(monthList, weekdaysLocalized, weekLocalized, monthsLocalized, useColor)
+			currentMonth.PrintMonth(monthList, tr, useColor)
 			fmt.Println()
 
 			// Clear list for next chunk
@@ -274,7 +247,7 @@ func main() {
 
 	if len(monthList) > 0 {
 		// Print remaining month(s)
-		currentMonth.PrintMonth(monthList, weekdaysLocalized, weekLocalized, monthsLocalized, useColor)
+		currentMonth.PrintMonth(monthList, tr, useColor)
 		fmt.Println()
 	}
 

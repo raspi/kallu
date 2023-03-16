@@ -5,6 +5,7 @@ import (
 	"github.com/raspi/kallu/month/internal/table"
 	"github.com/raspi/kallu/month/internal/tcell"
 	"github.com/raspi/kallu/month/internal/trow"
+	"golang.org/x/text/message"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -87,7 +88,34 @@ func (mon Month) GetNextMonth() Month {
 	return New(next.Year(), next.Month(), mon.dow, mon.now)
 }
 
-func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]string, weekLocalized string, monthsLocalized map[time.Month]string, useColor bool) {
+func (mon Month) PrintMonth(months []Month, tr *message.Printer, useColor bool) {
+	weekdaysLocalized := map[time.Weekday]string{
+		time.Monday:    tr.Sprintf(`short.monday`), // mon
+		time.Tuesday:   tr.Sprintf(`short.tuesday`),
+		time.Wednesday: tr.Sprintf(`short.wednesday`),
+		time.Thursday:  tr.Sprintf(`short.thursday`),
+		time.Friday:    tr.Sprintf(`short.friday`),
+		time.Saturday:  tr.Sprintf(`short.saturday`),
+		time.Sunday:    tr.Sprintf(`short.sunday`), // sun
+	}
+
+	monthsLocalized := map[time.Month]string{
+		time.January:   tr.Sprintf(`january`), // 1
+		time.February:  tr.Sprintf(`february`),
+		time.March:     tr.Sprintf(`march`),
+		time.April:     tr.Sprintf(`april`),
+		time.May:       tr.Sprintf(`may`),
+		time.June:      tr.Sprintf(`june`), // 6
+		time.July:      tr.Sprintf(`july`),
+		time.August:    tr.Sprintf(`august`),
+		time.September: tr.Sprintf(`september`),
+		time.October:   tr.Sprintf(`october`),
+		time.November:  tr.Sprintf(`november`),
+		time.December:  tr.Sprintf(`december`), // 12
+	}
+
+	weekLocalized := tr.Sprintf(`week`)
+
 	DefaultFG := uint8(250)
 
 	monthCount := len(months)
