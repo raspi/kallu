@@ -254,8 +254,8 @@ func main() {
 
 	weekLocalized := tr.Sprintf(`week`)
 
-	chunks := int(*howManyChunks)
-	currChunk := 0
+	chunks := *howManyChunks
+	currChunk := uint(0)
 
 	var monthList []month.Month
 	for _, m := range months {
@@ -265,6 +265,7 @@ func main() {
 		if currChunk == chunks {
 			currentMonth.PrintMonth(monthList, weekdaysLocalized, weekLocalized, monthsLocalized, useColor)
 			fmt.Println()
+
 			// Clear list for next chunk
 			monthList = []month.Month{}
 			currChunk = 0
