@@ -66,7 +66,7 @@ func (mon Month) GetStartEndWeek() (start time.Time, end time.Time) {
 	return mon.start, mon.end
 }
 
-func (mon Month) GetDaysWeeks(start time.Time, end time.Time) (weeks int, days int) {
+func (mon Month) GetDaysWeeks(start time.Time, end time.Time) (weeks uint, days uint) {
 	c := start
 
 	for !c.Equal(end) {
@@ -151,7 +151,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 	mtable.AddRow(hdrRow)
 
 	// Calculate week row count
-	maxweeks := 0
+	maxweeks := uint(0)
 	for _, m := range months {
 		start, end := m.GetStartEndWeek()
 		weeks, _ := m.GetDaysWeeks(start, end)
@@ -161,7 +161,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 	}
 
 	// generate main week view
-	for weekIndex := 0; weekIndex < maxweeks+1; weekIndex++ {
+	for weekIndex := uint(0); weekIndex < maxweeks+1; weekIndex++ {
 		wdRow := trow.New()
 
 		// Add weeks and days
@@ -171,7 +171,7 @@ func (mon Month) PrintMonth(months []Month, weekdaysLocalized map[time.Weekday]s
 			start, end := m.GetStartEndWeek()
 			if weekIndex > 0 {
 				// the magick
-				start = start.AddDate(0, 0, 7*weekIndex)
+				start = start.AddDate(0, 0, int(7*weekIndex))
 			}
 
 			if start.Before(end) {
